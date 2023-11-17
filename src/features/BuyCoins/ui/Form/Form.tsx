@@ -38,7 +38,7 @@ export const Form = ({ initialValues, onSuccess, id }: Props) => {
     } catch (e) {
       if (isApiError(e)) {
         setError("root.serverError", {
-          message: "Недостаточно средств",
+          message: e.response?.data?.message,
         });
       }
     }

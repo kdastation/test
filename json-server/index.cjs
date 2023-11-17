@@ -17,8 +17,11 @@ server.post("/coins/transfer", (req, res) => {
   try {
 
     const { amount } = req.body;
+    if (amount <= 0) {
+      return res.status(400).json({message: "Error amount"})
+    }
 
-    if (amount * 1000 > 15000) {
+    if (amount * priceCoin > maxBalance) {
       return res.status(400).json({message: "Недостаточно средств"})
     }
 

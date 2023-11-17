@@ -1,5 +1,6 @@
 import { routes } from "@shared/consts/routes";
 import { Coin } from "../types/Coin";
+import { Price } from "../types/Price";
 import { api } from "@shared/api";
 
 export type GetCoinsParams = {
@@ -18,9 +19,9 @@ export const service = {
       },
     });
   },
-  getCoin(id: number) {
-    return api.request<Coin>({
-      url: `${routes.coins}/${id}`,
+  getCoinPrice(id: number) {
+    return api.request<Price>({
+      url: `${routes.price}/${id}`,
     });
   },
 };

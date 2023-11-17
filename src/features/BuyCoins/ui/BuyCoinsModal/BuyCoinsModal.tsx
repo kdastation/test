@@ -1,5 +1,5 @@
 import { BalanceInfo, useGetBalance } from "@entities/Balance";
-import { useGetCoin } from "@entities/Coin";
+import { useGetCoinPrice } from "@entities/Coin";
 import { useBoolean } from "@shared/hooks/useBoolean";
 import { Modal } from "@shared/ui/Popups";
 import { Form } from "../Form/Form";
@@ -12,7 +12,7 @@ type Props = {
   isVisible: boolean;
 };
 export const BuyCoinsModal = ({ id, isVisible, onClose }: Props) => {
-  const { data: coin } = useGetCoin(id);
+  const { data: priceInfo } = useGetCoinPrice(id);
   const { data: balanceInfo } = useGetBalance();
 
   const [isVisibleSuccess, setIsVisibleSuccess] = useBoolean(false);
@@ -26,7 +26,7 @@ export const BuyCoinsModal = ({ id, isVisible, onClose }: Props) => {
     );
   }
 
-  if (!coin || !balanceInfo) {
+  if (!priceInfo || !balanceInfo) {
     return (
       <Modal isOpen={isVisible} onClose={onClose}>
         <div>loading...</div>
@@ -34,12 +34,12 @@ export const BuyCoinsModal = ({ id, isVisible, onClose }: Props) => {
     );
   }
 
-  const maxAmount = getMaxAmount(balanceInfo.balance, 1000);
+  const maxAmount = getMaxAmount(balanceInfo.balance, priceInfo.price);
 
   return (
     <Modal isOpen={isVisible} onClose={onClose} title="Buy Coin">
       <BalanceInfo />
-      <div>price: 1000</div>
+      <div>price: {priceInfo.price}</div>
       <Form
         onSuccess={setIsVisibleSuccess.on}
         id={id}

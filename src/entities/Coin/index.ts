@@ -1,6 +1,6 @@
 export { useGetCoins } from "./model/api/getCoins/getCoins";
 
-export { useGetCoin } from "./model/api/getCoin/getCoin";
+export { useGetCoinPrice } from "./model/api/getCoinPrice/getCoinPrice";
 
 export { CardCoin } from "./ui/CardCoin/CardCoin";
 

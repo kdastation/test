@@ -2,15 +2,15 @@ import { useQuery } from "react-query";
 import { service } from "../service";
 
 const keys = {
-  root: ["coins"],
+  root: ["price"],
   query: (id: number) => [...keys.root, id],
 };
 
-export const useGetCoin = (id: number) => {
+export const useGetCoinPrice = (id: number) => {
   return useQuery({
     queryKey: keys.query(id),
     queryFn: async () => {
-      return await service.getCoin(id);
+      return await service.getCoinPrice(id);
     },
     select: ({ data }) => data,
   });
