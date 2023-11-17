@@ -1,15 +1,6 @@
 import React, { ElementType, forwardRef, ReactNode } from "react";
 
 type Props<Type extends ElementType | React.ComponentType> = {
-  // size?: Sizes;
-  // variant?: Variants;
-  // fullWidth?: boolean;
-  // isLoading?: boolean;
-  // width?: string | number;
-  // leftAddon?: ReactNode;
-  // rightAddon?: ReactNode;
-  // gap?: string | number;
-  // maxWidth?: string | number;
   as?: Type;
 } & AdditionalProps<Type>;
 
@@ -39,9 +30,6 @@ export const Button: ButtonComponent = forwardRef(
     return (
       <Component {...props} ref={ref}>
         {children}
-        {/*{!isLoading && leftAddon && leftAddon}*/}
-        {/*{!isLoading && children}*/}
-        {/*{!isLoading && rightAddon && rightAddon}*/}
       </Component>
     );
   },
